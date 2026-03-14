@@ -2,14 +2,14 @@
 #include "World.h"
 
 int main() {
-    InitWindow(800, 600, "Simulation");
     World world;
     world.init();
 
     while (!WindowShouldClose()) {
-        world.update();
 
+        world.update(GetFrameTime());
         BeginDrawing();
+        ClearBackground(RAYWHITE);
         world.draw();
         EndDrawing();
     }
