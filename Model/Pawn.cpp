@@ -35,8 +35,11 @@ void Pawn::move(const float dt) {
 }
 
 void Pawn::update(const float dt) {
-    updateTexture(dt);
     think();
     move(dt);
+}
+
+void Pawn::draw() {
+    const Texture2D* currentTex = &stateTextures[currentState];
 }
 

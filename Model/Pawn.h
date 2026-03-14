@@ -1,6 +1,9 @@
 #ifndef SIMULATION_PAWN_H
 #define SIMULATION_PAWN_H
+#include <map>
+
 #include "Entity.h"
+#include "raylib.h"
 
 enum PawnState {
     IDLE,
@@ -9,18 +12,19 @@ enum PawnState {
 };
 
 
-class Pawn : public Entity {
+class Pawn: public Entity {
 public:
     float speed = 100.0f;
-    Vector2 currentTarget{};
+    Vector2 currentTarget{0,0};
     PawnState currentState = IDLE;
+    std::map<PawnState,Texture2D> stateTextures;
 
-    Pawn(const int columns, const Vector2 startPos, const float startScale = 1.0f) : Entity(columns, startPos, startScale) {}
 
-    void SetDestination(const Vector2& target);
+    void SetDestination(const Vector2 &target);
     void think();
     void move(float dt);
     void update(float dt);
+    void draw();
 };
 
 

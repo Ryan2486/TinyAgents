@@ -1,21 +1,19 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+//
+// Created by ryanr on 14/03/2026.
+//
 
+#ifndef SIMULATION_ENTITY_H
+#define SIMULATION_ENTITY_H
 #include "raylib.h"
 
 class Entity {
 public:
-    Vector2 position{};
-    int numFrames;
-    int currentFrame;
-    float frameTimer;
-    float frameSpeed;
-    float scale = 1.0f;
+    Vector2 position;
+    float scale;
+    float radius;
 
-    Entity(int columns, Vector2 startPos, float startScale = 1.0f);
-
-    void updateTexture(float dt);
-    void draw(const Texture2D& texture) const;
+    explicit Entity(Vector2 startPos, float scale, float radius);
 };
 
-#endif
+
+#endif //SIMULATION_ENTITY_H
