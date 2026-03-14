@@ -15,11 +15,13 @@ set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(raylib)
 
 add_executable(simulation main.cpp
-        Model/Entity.cpp
-        Model/Entity.h
         Model/pawn.cpp
         Model/pawn.h
         utils.cpp
-        utils.h)
+        utils.h
+        Model/MyTexture.cpp
+        Model/MyTexture.h
+        Model/Entity.cpp
+        Model/Entity.h)
 
 target_link_libraries(simulation raylib)
