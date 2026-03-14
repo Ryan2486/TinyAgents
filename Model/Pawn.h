@@ -3,6 +3,7 @@
 #include <map>
 
 #include "Entity.h"
+#include "MyTexture.h"
 #include "raylib.h"
 
 enum PawnState {
@@ -17,14 +18,14 @@ public:
     float speed = 100.0f;
     Vector2 currentTarget{0,0};
     PawnState currentState = IDLE;
-    std::map<PawnState,Texture2D> stateTextures;
+    std::map<PawnState,MyTexture> stateTextures;
 
 
     void SetDestination(const Vector2 &target);
-    void think();
+    void think(float dt);
     void move(float dt);
-    void update(float dt);
-    void draw();
+    void update(float dt) override;
+    void draw() override;
 };
 
 

@@ -11,13 +11,13 @@ void Pawn::SetDestination(const Vector2 &target) {
     currentState = RUNNING;
 }
 
-void Pawn::think() {
-    // for now just set a random destination when idle
-    if (currentState == IDLE) {
-        const auto randomX = static_cast<float>(GetRandomValue(100, 700));
-        const auto randomY = static_cast<float>(GetRandomValue(100, 500));
-        SetDestination({randomX, randomY});
-    }
+void Pawn::think(const float dt) {
+     if (currentState == IDLE) {
+         if (GetRandomValue(0, 100) < 5) { // 5% chance to move
+             const Vector2 randomTarget = {static_cast<float>(GetRandomValue(0, 800)), static_cast<float>(GetRandomValue(0, 600))};
+             SetDestination(randomTarget);
+         }
+     }
 };
 
 void Pawn::move(const float dt) {
@@ -35,11 +35,12 @@ void Pawn::move(const float dt) {
 }
 
 void Pawn::update(const float dt) {
-    think();
-    move(dt);
+    think(dt);
+    stateTextures[currentState].updateState(dt);
 }
 
 void Pawn::draw() {
-    const Texture2D* currentTex = &stateTextures[currentState];
+    const MyTexture &texture = stateTextures[currentState];
+    texture.draw(position, scale);
 }
 
