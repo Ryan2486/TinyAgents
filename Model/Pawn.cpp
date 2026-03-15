@@ -50,7 +50,6 @@ void Pawn::update(const float dt) {
 }
 
 void Pawn::draw() {
-    const MyTexture &texture = stateTextures[currentState];
-    texture.draw(position, scale);
+     stateTextures[currentState].draw(position, scale);
 }
 
