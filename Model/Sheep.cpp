@@ -17,12 +17,11 @@ void Sheep::thinking(const float dt) {
             waitTimer -= dt;
             return;
         }
-        if (const int proba = GetRandomValue(0, 100); proba < 5) {
+        if (const int proba = GetRandomValue(0, 100); proba < 33) {
             const Vector2 randomTarget = {static_cast<float>(GetRandomValue(0, SCREEN_WIDTH)), static_cast<float>(GetRandomValue(0, SCREEN_HEIGHT))};
             currentTarget = randomTarget;
             currentState = SheepState::MOVING;
-            acting(dt);
-        } else if (proba < 20) {
+        } else if (proba < 66) {
             waitTimer = static_cast<float>(GetRandomValue(20, 50)) / 10.0f;
             currentState = SheepState::GRAZING;
         } else {
@@ -48,6 +47,7 @@ void Sheep::acting(const float dt) {
 
 void Sheep::update(const float dt) {
     thinking(dt);
+    acting(dt);
     if (stateTextures.contains(currentState)) {
         stateTextures[currentState].updateState(dt);
     }

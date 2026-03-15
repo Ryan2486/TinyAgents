@@ -35,9 +35,9 @@ void World::init() {
     textures["sheep_move"] = LoadTexture("../assets/Sheep/Sheep_Move.png");
 
     const auto sheep = new Sheep({randomX, randomY}, 16.0f, {
-                              {SheepState::IDLE, MyTexture(textures["sheep_idle"], 8, 0.1f)},
-                              {SheepState::GRAZING, MyTexture(textures["sheep_graze"], 6, 0.1f)},
-                              {SheepState::MOVING, MyTexture(textures["sheep_move"], 6, 0.1f)}
+                              {SheepState::IDLE, MyTexture(textures["sheep_idle"], 6, 0.1f)},
+                              {SheepState::GRAZING, MyTexture(textures["sheep_graze"], 12, 0.1f)},
+                              {SheepState::MOVING, MyTexture(textures["sheep_move"], 4, 0.1f)}
                           });
     entities.push_back(sheep);
 
