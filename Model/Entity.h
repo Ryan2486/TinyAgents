@@ -12,7 +12,7 @@ public:
     float scale;
     float radius;
 
-    explicit Entity(const Vector2 startPos, const float scale, const float radius) : position(startPos), scale(scale), radius(radius) {}
+    explicit Entity(const Vector2 startPos, const float radius, const float scale = 1.0f) : position(startPos), scale(scale), radius(radius) {}
     virtual ~Entity() = default;
     virtual void update(float dt) = 0;
     virtual void draw() = 0;

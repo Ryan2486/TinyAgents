@@ -22,7 +22,7 @@ public:
     std::map<PawnState,MyTexture> stateTextures;
     float waitTimer = 0.0f;
 
-    Pawn(Vector2 startPos,float scale,float radius, const std::map<PawnState, MyTexture> &stateTextures);
+    Pawn(Vector2 startPos,float radius, const std::map<PawnState, MyTexture> &stateTextures);
 
     void SetDestination(const Vector2 &target);
     void think(float dt);

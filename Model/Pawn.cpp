@@ -7,7 +7,7 @@
 #include "../utils.h"
 #include "../Constants.h"
 
-Pawn::Pawn(const Vector2 startPos, const float scale, const float radius, const std::map<PawnState, MyTexture> &stateTextures) : Entity(startPos, scale, radius), stateTextures(stateTextures)  {
+Pawn::Pawn(const Vector2 startPos, const float radius, const std::map<PawnState, MyTexture> &stateTextures) : Entity(startPos, radius), stateTextures(stateTextures)  {
 }
 
 void Pawn::SetDestination(const Vector2 &target) {
