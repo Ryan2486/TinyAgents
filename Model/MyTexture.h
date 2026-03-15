@@ -9,11 +9,13 @@
 
 class MyTexture {
 public:
-    Texture2D src;
+    Texture2D src{};
     int frameCount;
     float frameTime;
-    float currentTime;
-    int currentFrame;
+    float currentTime{};
+    int currentFrame{};
+
+    MyTexture(const Texture2D &src, int frameCount, float frameTime);
 
     void resetState();
     void updateState(float dt);

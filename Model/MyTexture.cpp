@@ -4,6 +4,12 @@
 
 #include "MyTexture.h"
 
+MyTexture::MyTexture(const Texture2D &src, const int frameCount, const float frameTime) {
+    this->src = src;
+    this->frameCount = frameCount;
+    this->frameTime = frameTime;
+}
+
 void MyTexture::resetState() {
     currentTime = 0.0f;
     currentFrame = 0;
