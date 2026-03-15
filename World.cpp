@@ -22,7 +22,7 @@ void World::init() {
     const auto randomX = static_cast<float>(GetRandomValue(10, SCREEN_WIDTH - 10));
     const auto randomY = static_cast<float>(GetRandomValue(10, SCREEN_HEIGHT - 10));
 
-    const auto pawn = new Pawn({randomX, randomY}, 1.0f, 16.0f, {
+    const auto pawn = new Pawn({randomX, randomY}, 16.0f, {
                               {IDLE, MyTexture(textures["pawn_idle"], 8, 0.1f)},
                               {RUNNING, MyTexture(textures["pawn_run"], 6, 0.1f)},
                               {ATTACKING, MyTexture(textures["pawn_attack"], 4, 0.1f)}
