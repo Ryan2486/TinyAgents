@@ -23,6 +23,9 @@ add_executable(simulation main.cpp
         Model/MyTexture.h
         Model/Entity.h
         World.cpp
-        World.h)
+        World.h
+        Model/Tileset.cpp
+        Model/Tileset.h
+        Constants.h)
 
 target_link_libraries(simulation raylib)
