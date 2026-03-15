@@ -12,11 +12,11 @@ Pawn::Pawn(const Vector2 startPos, const float radius, const std::map<PawnState,
 
 void Pawn::SetDestination(const Vector2 &target) {
     currentTarget = target;
-    currentState = RUNNING;
+    currentState = PawnState::RUNNING;
 }
 
 void Pawn::think(const float dt) {
-     if (currentState == IDLE) {
+     if (currentState == PawnState::IDLE) {
          if (waitTimer > 0.0f) {
              waitTimer -= dt;
              return;
@@ -30,7 +30,7 @@ void Pawn::think(const float dt) {
 };
 
 void Pawn::move(const float dt) {
-    if (currentState == RUNNING) {
+    if (currentState == PawnState::RUNNING) {
         Vector2 direction = {currentTarget.x - position.x, currentTarget.y - position.y};
         if (float distance = utils::GetDistance(position, currentTarget); distance > 1.0f) {
             direction.x /= distance;
@@ -38,7 +38,7 @@ void Pawn::move(const float dt) {
             position.x += direction.x * speed * dt;
             position.y += direction.y * speed * dt;
         } else {
-            currentState = IDLE;
+            currentState = PawnState::IDLE;
             waitTimer = static_cast<float>(GetRandomValue(10, 30)) / 10.0f;
         }
     }

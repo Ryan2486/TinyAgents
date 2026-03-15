@@ -9,7 +9,7 @@
 #include "Entity.h"
 #include "MyTexture.h"
 
-enum SheepState {
+enum class SheepState {
     IDLE,
     GRAZING,
     MOVING,
@@ -20,7 +20,7 @@ class Sheep : public Entity{
 public:
     float speed = 100.0f;
     Vector2 currentTarget{0,0};
-    SheepState currentState = IDLE;
+    SheepState currentState = SheepState::IDLE;
     std::map<SheepState,MyTexture> stateTextures;
     float waitTimer = 0.0f;
 

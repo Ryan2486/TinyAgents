@@ -7,7 +7,7 @@
 
 #include "raylib.h"
 
-enum PawnState {
+enum class PawnState {
     IDLE,
     RUNNING,
     ATTACKING
@@ -18,7 +18,7 @@ class Pawn: public Entity {
 public:
     float speed = 100.0f;
     Vector2 currentTarget{0,0};
-    PawnState currentState = IDLE;
+    PawnState currentState = PawnState::IDLE;
     std::map<PawnState,MyTexture> stateTextures;
     float waitTimer = 0.0f;
 

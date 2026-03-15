@@ -12,7 +12,7 @@ Sheep::Sheep(const Vector2 startPos,const float radius,const std::map<SheepState
 }
 
 void Sheep::thinking(const float dt) {
-    if (currentState == IDLE || currentState == GRAZING) {
+    if (currentState == SheepState::IDLE || currentState == SheepState::GRAZING) {
         if (waitTimer > 0.0f) {
             waitTimer -= dt;
             return;
@@ -20,11 +20,11 @@ void Sheep::thinking(const float dt) {
         if (const int proba = GetRandomValue(0, 100); proba < 5) {
             const Vector2 randomTarget = {static_cast<float>(GetRandomValue(0, SCREEN_WIDTH)), static_cast<float>(GetRandomValue(0, SCREEN_HEIGHT))};
             currentTarget = randomTarget;
-            currentState = MOVING;
+            currentState = SheepState::MOVING;
             acting(dt);
         } else if (proba < 20) {
             waitTimer = static_cast<float>(GetRandomValue(20, 50)) / 10.0f;
-            currentState = GRAZING;
+            currentState = SheepState::GRAZING;
         } else {
             waitTimer = static_cast<float>(GetRandomValue(10, 30)) / 10.0f;
         }
@@ -32,7 +32,7 @@ void Sheep::thinking(const float dt) {
 }
 
 void Sheep::acting(const float dt) {
-    if (currentState == MOVING) {
+    if (currentState == SheepState::MOVING) {
         if (const float distance = utils::GetDistance(position, currentTarget); distance > 1.0f) {
             Vector2 direction = {currentTarget.x - position.x, currentTarget.y - position.y};
             direction.x /= distance;
@@ -40,7 +40,7 @@ void Sheep::acting(const float dt) {
             position.x += direction.x * speed * dt;
             position.y += direction.y * speed * dt;
         } else {
-            currentState = IDLE;
+            currentState = SheepState::IDLE;
             waitTimer = 0.5f;
         }
     }
