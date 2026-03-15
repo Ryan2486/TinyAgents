@@ -6,6 +6,9 @@
 
 #include "../utils.h"
 
+Pawn::Pawn(const Vector2 startPos, const float scale, const float radius, const std::map<PawnState, MyTexture> &stateTextures) : Entity(startPos, scale, radius), stateTextures(stateTextures)  {
+}
+
 void Pawn::SetDestination(const Vector2 &target) {
     currentTarget = target;
     currentState = RUNNING;
@@ -13,11 +16,16 @@ void Pawn::SetDestination(const Vector2 &target) {
 
 void Pawn::think(const float dt) {
      if (currentState == IDLE) {
+         if (waitTimer > 0.0f) {
+             waitTimer -= dt;
+             return;
+         }
          if (GetRandomValue(0, 100) < 5) { // 5% chance to move
              const Vector2 randomTarget = {static_cast<float>(GetRandomValue(0, 800)), static_cast<float>(GetRandomValue(0, 600))};
              SetDestination(randomTarget);
          }
      }
+    move(dt);
 };
 
 void Pawn::move(const float dt) {
@@ -30,6 +38,7 @@ void Pawn::move(const float dt) {
             position.y += direction.y * speed * dt;
         } else {
             currentState = IDLE;
+            waitTimer = static_cast<float>(GetRandomValue(10, 30)) / 10.0f;
         }
     }
 }

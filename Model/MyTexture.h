@@ -10,10 +10,12 @@
 class MyTexture {
 public:
     Texture2D src{};
-    int frameCount;
-    float frameTime;
+    int frameCount = 1;
+    float frameTime = 0.0f;
     float currentTime{};
     int currentFrame{};
+
+    MyTexture() = default;
 
     MyTexture(const Texture2D &src, int frameCount, float frameTime);
 

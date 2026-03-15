@@ -19,7 +19,9 @@ public:
     Vector2 currentTarget{0,0};
     PawnState currentState = IDLE;
     std::map<PawnState,MyTexture> stateTextures;
+    float waitTimer = 0.0f;
 
+    Pawn(Vector2 startPos,float scale,float radius, const std::map<PawnState, MyTexture> &stateTextures);
 
     void SetDestination(const Vector2 &target);
     void think(float dt);
