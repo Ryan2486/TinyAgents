@@ -26,6 +26,8 @@ add_executable(simulation main.cpp
         World.h
         Model/Tileset.cpp
         Model/Tileset.h
-        Constants.h)
+        Constants.h
+        Model/Sheep.cpp
+        Model/Sheep.h)
 
 target_link_libraries(simulation raylib)
