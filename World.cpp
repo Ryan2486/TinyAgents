@@ -33,17 +33,24 @@ void World::init() {
     textures["sheep_idle"] = LoadTexture("../assets/Sheep/Sheep_Idle.png");
     textures["sheep_graze"] = LoadTexture("../assets/Sheep/Sheep_Grass.png");
     textures["sheep_move"] = LoadTexture("../assets/Sheep/Sheep_Move.png");
-
-    const auto sheep = new Sheep({randomX, randomY}, 16.0f, {
-                              {SheepState::IDLE, MyTexture(textures["sheep_idle"], 6, 0.1f)},
-                              {SheepState::GRAZING, MyTexture(textures["sheep_graze"], 12, 0.1f)},
-                              {SheepState::MOVING, MyTexture(textures["sheep_move"], 4, 0.1f)}
-                          });
-    entities.push_back(sheep);
-
 }
 
-void World::update(const float delta) const {
+void World::update(const float delta) {
+    spawnTimer += delta;
+    if (spawnTimer >= spawnInterval) {
+        spawnTimer -= spawnInterval;
+
+        const auto randomX = static_cast<float>(GetRandomValue(10, SCREEN_WIDTH - 10));
+        const auto randomY = static_cast<float>(GetRandomValue(10, SCREEN_HEIGHT - 10));
+
+        const auto sheep = new Sheep({randomX, randomY}, 16.0f, {
+                                  {SheepState::IDLE, MyTexture(textures["sheep_idle"], 6, 0.1f)},
+                                  {SheepState::GRAZING, MyTexture(textures["sheep_graze"], 12, 0.1f)},
+                                  {SheepState::MOVING, MyTexture(textures["sheep_move"], 4, 0.1f)}
+                              });
+        entities.push_back(sheep);
+
+    }
     for (Entity* e : entities) {
         e->update(delta);
     }
