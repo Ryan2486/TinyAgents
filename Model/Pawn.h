@@ -25,8 +25,8 @@ public:
     Pawn(Vector2 startPos,float radius, const std::map<PawnState, MyTexture> &stateTextures);
 
     void SetDestination(const Vector2 &target);
-    void think(float dt);
-    void move(float dt);
+    void thinking(float dt);
+    void acting(float dt);
     void update(float dt) override;
     void draw() override;
 };

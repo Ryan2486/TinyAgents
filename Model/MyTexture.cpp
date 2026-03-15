@@ -23,11 +23,11 @@ void MyTexture::updateState(const float dt) {
     }
 }
 
-void MyTexture::draw(const Vector2 position, const float scale) const {
+void MyTexture::draw(const Vector2 position, const float scale,const bool flipped) const {
     const auto width = static_cast<float>(src.width) / static_cast<float>(frameCount);
     const auto height = static_cast<float>(src.height);
 
-    const Rectangle sourceRec = { static_cast<float>(currentFrame) * width, 0.0f, width, height };
+    const Rectangle sourceRec = { static_cast<float>(currentFrame) * width, 0.0f, flipped? -width : width, height };
 
     const Rectangle destRec = { position.x, position.y, width * scale, height * scale };
 

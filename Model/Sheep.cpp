@@ -34,6 +34,7 @@ void Sheep::acting(const float dt) {
     if (currentState == SheepState::MOVING) {
         if (const float distance = utils::GetDistance(position, currentTarget); distance > 1.0f) {
             Vector2 direction = {currentTarget.x - position.x, currentTarget.y - position.y};
+            flipped = direction.x < 0;
             direction.x /= distance;
             direction.y /= distance;
             position.x += direction.x * speed * dt;
@@ -55,6 +56,6 @@ void Sheep::update(const float dt) {
 
 void Sheep::draw() {
     if (stateTextures.contains(currentState)) {
-        stateTextures[currentState].draw(position, scale);
+        stateTextures[currentState].draw(position, scale, flipped);
     }
 }

@@ -21,7 +21,7 @@ public:
 
     void resetState();
     void updateState(float dt);
-    void draw(Vector2 position, float scale) const;
+    void draw(Vector2 position, float scale, bool flipped = false) const;
 };
 
 
