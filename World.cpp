@@ -7,18 +7,22 @@
 #include <ranges>
 
 #include "Model/Pawn.h"
+#include "Constants.h"
 
 void World::init() {
-    InitWindow(NUMBER_OF_COLS * TILE_SIZE_ON_SCREEN, NUMBER_OF_ROWS * TILE_SIZE_ON_SCREEN, "Simulation");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Simulation");
     textures["map"] = LoadTexture("../assets/Tileset/Tilemap_color1.png");
     currentTileset = new Tileset(textures["map"], 6, 9);
-    mapData.resize(NUMBER_OF_ROWS, std::vector<int>(NUMBER_OF_COLS, 4));
+    mapData.resize(WORLD_ROWS, std::vector<int>(WORLD_COLS, 4));
 
     textures["pawn_idle"] = LoadTexture("../assets/Pawn/Pawn_Idle.png");
     textures["pawn_run"] = LoadTexture("../assets/Pawn/Pawn_Run.png");
     textures["pawn_attack"] = LoadTexture("../assets/Pawn/Pawn_Interact Knife.png");
 
-    const auto pawn = new Pawn({100, 100}, 1.0f, 16.0f, {
+    const auto randomX = static_cast<float>(GetRandomValue(10, SCREEN_WIDTH - 10));
+    const auto randomY = static_cast<float>(GetRandomValue(10, SCREEN_HEIGHT - 10));
+
+    const auto pawn = new Pawn({randomX, randomY}, 1.0f, 16.0f, {
                               {IDLE, MyTexture(textures["pawn_idle"], 8, 0.1f)},
                               {RUNNING, MyTexture(textures["pawn_run"], 6, 0.1f)},
                               {ATTACKING, MyTexture(textures["pawn_attack"], 4, 0.1f)}
@@ -45,10 +49,10 @@ void World::draw() const {
             const Rectangle srcRec = currentTileset->GetRect(tileID);
 
             const Rectangle destRec = {
-                static_cast<float>(x * TILE_SIZE_ON_SCREEN),
-                static_cast<float>(y * TILE_SIZE_ON_SCREEN),
-                static_cast<float>(TILE_SIZE_ON_SCREEN),
-                static_cast<float>(TILE_SIZE_ON_SCREEN)
+                static_cast<float>(x * TILE_SIZE),
+                static_cast<float>(y * TILE_SIZE),
+                static_cast<float>(TILE_SIZE),
+                static_cast<float>(TILE_SIZE)
             };
 
             DrawTexturePro(currentTileset->texture, srcRec, destRec, {0, 0}, 0.0f, WHITE);

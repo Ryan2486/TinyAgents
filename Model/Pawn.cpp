@@ -5,6 +5,7 @@
 #include "Pawn.h"
 
 #include "../utils.h"
+#include "../Constants.h"
 
 Pawn::Pawn(const Vector2 startPos, const float scale, const float radius, const std::map<PawnState, MyTexture> &stateTextures) : Entity(startPos, scale, radius), stateTextures(stateTextures)  {
 }
@@ -21,7 +22,7 @@ void Pawn::think(const float dt) {
              return;
          }
          if (GetRandomValue(0, 100) < 5) { // 5% chance to move
-             const Vector2 randomTarget = {static_cast<float>(GetRandomValue(0, 800)), static_cast<float>(GetRandomValue(0, 600))};
+             const Vector2 randomTarget = {static_cast<float>(GetRandomValue(0, SCREEN_WIDTH)), static_cast<float>(GetRandomValue(0, SCREEN_HEIGHT))};
              SetDestination(randomTarget);
          }
      }
